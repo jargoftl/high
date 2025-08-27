@@ -326,14 +326,14 @@ const ConnectPage = () => {
               className="w-[30px] h-[30px] rounded-full mr-2 border bg-white"
             />
             <motion.h2
-              className={`text-2xl font-extrabold tracking-wide ${
+              className={`text-1xl font-extrabold tracking-wide ${
                 isDarkMode ? "text-white" : "text-black"
               }`}
               initial={{ y: -40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              {name || "Loading..."} {/* 🔹 dynamic name from API */}
+              {name}
             </motion.h2>
           </div>
           <div className="flex items-center gap-4">
@@ -357,7 +357,7 @@ const ConnectPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 1 }}
       >
-        <h2 className="text-3xl font-bold font-serif mb-2">Select Wallet</h2>
+        <h2 className="text-1xl font-bold font-serif mb-2">Select Wallet</h2>
         <div className="load-row">
           <span></span>
           <span></span>
