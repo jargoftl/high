@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { BsTwitterX } from "react-icons/bs";
 import { PiTelegramLogoLight } from "react-icons/pi";
 import logo from "/images/logo/loo1.jpg";
@@ -6,9 +6,25 @@ import PopModal from "./PopModal";
 import ErrorModal from "./ErrorModal";
 
 const Homepage = () => {
-  /*   const { content } = useContext(TextContext); */
-  const [showModal, setShowModal] = React.useState(false);
-  const [showError, setShowError] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showError, setShowError] = useState(false);
+
+  // state for info
+  const [info, setInfo] = useState({ name: "", title: "", paragraph: "" });
+
+  // fetch info from API
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const res = await fetch("https://electric-eel.onrender.com/info");
+        const data = await res.json();
+        setInfo(data); // {name, title, paragraph}
+      } catch (err) {
+        console.error("Error fetching info", err);
+      }
+    };
+    fetchInfo();
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -26,13 +42,12 @@ const Homepage = () => {
         {/* HEADER */}
         <div className="flex justify-between items-center p-4 text-white">
           <div className="flex items-center">
-            =
             <img
               alt="logo"
               src={logo}
               className="w-[30px] h-[30px] rounded-full mr-2 border bg-white"
             />
-            <h3 className="font-bold font-sans"> My site new </h3>
+            <h3 className="font-bold font-sans">{info.name || "Loading..."}</h3>
           </div>
 
           <div className="flex gap-3 text-[20px]">
@@ -59,13 +74,10 @@ const Homepage = () => {
         {/* MIDDLE SECTION */}
         <div className="flex-1 flex flex-col justify-center items-center text-center px-4">
           <h1 className="text-[2.5em] font-semibold my-4 text-white">
-            FilFi社区停止中文服务公告
+            {info.title || "Loading title..."}
           </h1>
           <p className="max-w-md mb-6 text-[13px] text-white">
-            Utilize Venice's permissionless API to build highly performant AI
-            applications. Build global autonomous AI agents that leverage SOTA
-            open-source models for uncensored inference, images, characters or
-            code
+            {info.paragraph || "Loading paragraph..."}
           </p>
 
           {/* Connect Wallet Button */}
