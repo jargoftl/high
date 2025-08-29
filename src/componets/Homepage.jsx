@@ -53,7 +53,7 @@ const Homepage = () => {
                 className="flex justify-between items-center p-4 text-white"
                 initial={{ y: -60, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 0.1, ease: "easeOut" }}
               >
                 <div className="flex items-center">
                   <motion.img
