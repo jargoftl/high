@@ -4,7 +4,7 @@ import AdminPage from "./AdminPage";
 const Passwordpage = () => {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const correctPassword = "404010";
+  const correctPassword = "6040";
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === correctPassword) {
